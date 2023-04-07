@@ -40,7 +40,7 @@
         .append("g")
             .attr("transform", "translate(" + (width / 2 + margin.left) + "," + (height / 2 + margin.top) + ")");
 
-        d3.csv("./Data/assault.csv", function(data) {
+        d3.csv("./Data/assault2.csv", function(data) {
             var Rate10 = d3.map(data, function(d){return d.Rate10;}).keys().map(i => parseFloat(i))
             var state_avr_rate = (Rate10.reduce((a, b) => a + b, 0) / Rate10.length).toFixed(2)
             var assault_rates = []
@@ -89,7 +89,7 @@
                 tooltip
                 .html(
                     "<b>US state: </b>" + d.state + 
-                    "<br><b>State-Average Assault Rate: </b>" + 0.245 +
+                    "<br><b>State-Average Assault Rate: </b>" + 0.235 +
                     "<br><b>Assault Rate: </b>" + parseFloat(d.Rate10).toFixed(2)
                 )
                 .style("left", (d3.mouse(this)[0]+270) + "px")
@@ -166,7 +166,7 @@
                 .on("mouseleave", mouseleave)
             
             var ordinal = d3.scaleOrdinal()
-                .domain(["Assault Rate", "Total No. of Mass Shootings"])
+                .domain(["Average Assault Rate", "Total No. of Mass Shootings"])
                 .range(["#69b3a2", "red"]);
 
             svg.append("g")
@@ -193,7 +193,7 @@
                 .attr("y", -380)
                 .attr("text-anchor", "left")
                 .style("font-size", "22px")
-                .text("Assault Rate (2016) and Number of Mass Shootings");
+                .text("Average Assault Rate and No. of Mass Shootings");
     </script>
 </body>
 </html>
